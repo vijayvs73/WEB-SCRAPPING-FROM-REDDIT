@@ -1,0 +1,46 @@
+import praw
+
+#Authenticate
+reddit = praw.Reddit(
+    client_id="FROM REDDIT",            
+    client_secret="FROM REDDIT",   
+    user_agent="my_app_by_u/USERNAME" 
+)
+
+#Access subreddit
+subreddit = reddit.subreddit("DATA SCIENCE")  # change to any subreddit you want
+
+#Print top 10 hot posts
+for post in subreddit.hot(limit=10):
+    print("Title:", post.title)
+    print("Score:", post.score)
+    print("Comments:", post.num_comments)
+    print("URL:", post.url)
+    print("-" * 50)
+
+
+
+
+# TO GET CSV FILE
+
+import reddit_scraper
+import praw
+import csv
+
+# Authenticate
+reddit = praw.Reddit(
+    client_id="FROM REDDIT",
+    client_secret="FROM REDDIT",
+    user_agent="my_reddit_app_by_u/USER NAME"
+)
+
+subreddit = reddit.subreddit("DATA SCIENCE")
+
+# Collect and write to CSV
+with open("reddit_data.csv", "w", newline="", encoding="utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Title", "Author", "Score", "Comments", "URL"])
+
+    for post in subreddit.hot(limit=20):
+        writer.writerow([post.title, str(post.author), post.score, post.num_comments, post.url])
+
