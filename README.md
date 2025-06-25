@@ -18,3 +18,16 @@ Make sure you have Python 3 installed. Then install the required library:
 - Copy
 - Edit
 - pip install praw
+
+🔑 Reddit API Setup
+- Go to https://www.reddit.com/prefs/apps
+- Click "Create App"
+- Select script as app type
+** Fill out:**
+- Name: anything (e.g., RedditScraper)
+- Redirect URI: http://localhost:8080
+- Click Create App
+** Copy your:**
+- client_id → shown under the app name
+- client_secret → shown as “secret”
+
